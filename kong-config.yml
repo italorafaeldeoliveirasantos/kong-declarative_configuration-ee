@@ -1,0 +1,26 @@
+version: "1.0"
+
+workspaces:
+  - name: italo
+    tags: italo ws
+    services:
+      - name: serviceone
+        url: http://mockbin.org
+        tags: first route to test
+        routes:
+          - name: test route
+            paths:
+            - /test
+            hosts:
+            - example.com
+            methods:
+            - GET
+            - POST
+        plugins:
+          - name: key-auth
+        consumers:
+          - name: servless
+            keyauth_credentials:
+            - key: my-key
+      - name: servicetwo
+        url: http://httpbin.org
